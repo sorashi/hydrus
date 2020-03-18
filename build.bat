@@ -10,8 +10,8 @@ if not exist .\bin\ffmpeg.exe (
 )
 REM pyinstaller can't export multiple exe's easily until this https://github.com/pyinstaller/pyinstaller/issues/1527 is fixed
 REM for now, we build both client and server and then merge them using xcopy
-pyinstaller server.py -i static\hydrus.ico --add-binary bin;bin
-pyinstaller -w client.pyw -i static\hydrus.ico --add-binary bin;bin
+pyinstaller server.py -i static\hydrus.ico
+pyinstaller -w client.pyw -i static\hydrus.ico --add-binary bin;bin --add-data static;static
 cd dist
 REM /e copies all subdirectories even if empty, /d copies only newer files, /y skips overwrite confirmations
 xcopy /e /d /y server client
